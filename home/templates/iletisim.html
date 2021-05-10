@@ -26,19 +26,57 @@
 		</div>
 	</div>
 
-	<div id="fh5co-contact-section">
+
 		<div id="breadcrumb">
     <div class="container">
         <ul class="breadcrumb">
             <li><a href="/home">Anasayfa </a> </li>
               <li class="active">İletişim </li>
         </ul>
-{{setting.contact|safe}}
+
     </div>
-</div>
 
-	</div>
-	</div>
+			 <!-- section -->
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+                <div class="row">
+                    <div class="col-md-4" >
+                <br/><br/><br/>
+                        <div class="product_blog_cont">
+                            <div class="section-title">
+                                <h2><span class="theme_color">İletişim Formu</span></h2>
+                            </div>
 
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <div class="alert alert-{{message.tags}}" role="alert">
+                                        {{ message }}
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
 
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <input type="submit" value="SEND FORM">
+                            </form>
+                        </div>
+                </div>
+
+                        <div class="col-md-6">
+                            <div class="section-title">
+                                <br/><br/><br/>
+                                <h2><span class="theme_color">İletişim Bilgilerimiz</span></h2>
+                            </div>
+                            {{ setting.contact|safe }}
+                        </div>
+                </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /section -->
+		</div>
 {% endblock %}
