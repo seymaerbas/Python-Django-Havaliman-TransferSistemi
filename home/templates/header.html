@@ -13,12 +13,13 @@
 							<li><a class="active" href="index.html">Home</a></li>
 
 							<li>
-								<a href="hotel.html" class="fh5co-sub-ddown">ARAÇLAR</a>
+
 								{% load mptt_tags %}
+								<a class="fh5co-sub-ddown">ARAÇLAR</a>
 							<ul>
 								{% recursetree category %}
 									<li>
-										<a href="/category/{{node.slug}}" class="fh5co-sub-ddown" style="color: red" >{{ node.title }}</a>
+										<a href="/category/{{node.id}}/{{node.slug}}" class="fh5co-sub-ddown" style="color: red" >{{ node.title }}</a>
 
 										{% if not node.is_leaf_node %}
 											<ul class="children" >
@@ -41,7 +42,7 @@
 
 							<li><a href="services.html">Services</a></li>
 							<li><a href="/referanslarımız">Referanslar</a></li>
-								<li><a href="/hakkımızda">Hakkımızda</a></li>
+							<li><a href="/hakkımızda">Hakkımızda</a></li>
 							<li><a href="iletisim">İletişim</a></li>
 						</ul>
 					</nav>
@@ -49,5 +50,3 @@
 			</div>
 		</header>
 		</div>
-	</div>
-	</div>

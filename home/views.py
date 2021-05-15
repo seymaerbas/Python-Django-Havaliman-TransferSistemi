@@ -14,6 +14,7 @@ def index(request):
     sliderdata = Transfer.objects.all()[:4]
     category= Category.objects.all()
 
+
     context = {'setting': setting,
                'page':'home',
                'category':category,
@@ -22,12 +23,14 @@ def index(request):
 
 def hakkımızda(request):
     setting = Setting.objects.get(pk=1)
-    context = {'setting': setting, 'page': 'hakkımızda'}
+    category = Category.objects.all()
+    context = {'setting': setting, 'page': 'hakkımızda', 'category': category}
     return render(request, 'hakkımızda.html', context)
 
 def referanslarımız(request):
     setting = Setting.objects.get(pk=1)
-    context = {'setting': setting, 'page': 'referanslarımız'}
+    category = Category.objects.all()
+    context = {'setting': setting, 'page': 'referanslarımız', 'category': category}
     return render(request, 'referanslarımız.html', context)
 
 def iletisim(request):
@@ -46,6 +49,19 @@ def iletisim(request):
             return HttpResponseRedirect('/iletisim')
     setting = Setting.objects.get(pk=1)
     form = ContactFormu()
-    category  = Transfer.objects.all()
+    category = Category.objects.all()
     context = {'setting': setting, 'form':form, 'category': category}
     return render(request, 'iletisim.html', context)
+
+
+
+
+def category_transfers(request,id,slug):
+    category = Category.objects.all()
+    categorydata = Category.objects.get(pk=id)
+    transfers =Transfer.objects.filter(category_id=id)
+    context = { 'category': category,
+                'transfers': transfers,
+                'categorydata':categorydata,
+                }
+    return render(request, 'transfers.html', context)
