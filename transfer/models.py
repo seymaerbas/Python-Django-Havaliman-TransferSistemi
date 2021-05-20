@@ -53,6 +53,7 @@ class Transfer(models.Model):
     capasity = models.FloatField()
     detail = RichTextUploadingField()
     status = models.CharField(max_length=10, choices=STATUS)
+    slug = models.SlugField(blank=True)
     create_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
 

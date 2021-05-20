@@ -7,15 +7,15 @@
 			<div class="container">
 				<div class="nav-header">
 					<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
-					<h1 id="fh5co-logo"><a href="index.html">Transfer</a></h1>
+					<h1 id="fh5co-logo"><a href="/home">Transfer</a></h1>
 					<nav id="fh5co-menu-wrap" role="navigation">
 						<ul class="sf-menu" id="fh5co-primary-menu">
-							<li><a class="active" href="index.html">Home</a></li>
+							<li><a class="active" href="/home">Home</a></li>
 
 							<li>
 
 								{% load mptt_tags %}
-								<a class="fh5co-sub-ddown">ARAÇLAR</a>
+								<a class="fh5co-sub-ddown" href="/category/{{rs.id}}/{{rs.slug}}">ARAÇLAR</a>
 							<ul>
 								{% recursetree category %}
 									<li>

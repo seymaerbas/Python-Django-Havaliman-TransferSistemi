@@ -6,19 +6,24 @@ from django.shortcuts import render
 
 # Create your views here.
 from home.models import Setting, ContactFormu, ContactFormMessage
-from transfer.models import Transfer, Category
+from transfer.models import Transfer, Category, Images
 
 
 def index(request):
     setting = Setting.objects.get(pk=1)
     sliderdata = Transfer.objects.all()[:4]
     category= Category.objects.all()
-
-
+    daytransfer=Transfer.objects.all()[:4]
+    lasttransfer=Transfer.objects.all().order_by('-id')[:4]
+    randomtransfer = Transfer.objects.all().order_by('?')[:4]
     context = {'setting': setting,
                'page':'home',
                'category':category,
-               'sliderdata':sliderdata}
+               'sliderdata': sliderdata,
+               'daytransfer':daytransfer,
+               'lasttransfer': lasttransfer,
+               'randomtransfer': randomtransfer
+               }
     return render(request, 'index.html', context)
 
 def hakkımızda(request):
@@ -59,9 +64,19 @@ def iletisim(request):
 def category_transfers(request,id,slug):
     category = Category.objects.all()
     categorydata = Category.objects.get(pk=id)
-    transfers =Transfer.objects.filter(category_id=id)
+    transfers =Transfer.objects.filter(category_id=id,  status='True')
     context = { 'category': category,
                 'transfers': transfers,
                 'categorydata':categorydata,
                 }
     return render(request, 'transfers.html', context)
+
+def transfer_detail(request, id, slug):
+    category = Category.objects.all()
+    transfer = Transfer.objects.get(pk=id)
+    images = Images.objects.filter(transfer_id=id)
+    context = {'category': category,
+               'transfer': transfer,
+               'images':images
+               }
+    return render(request, 'transfer_detail.html',context)

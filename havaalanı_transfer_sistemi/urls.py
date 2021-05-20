@@ -29,7 +29,8 @@ urlpatterns = [
     path('transfer/', include('transfer.urls')),
     path('admin/', admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),
-    path('category/<int:id>/<slug:slug>/', views.category_transfers, name='category_transfers')
+    path('category/<int:id>/<slug:slug>/', views.category_transfers, name='category_transfers'),
+    path('transfer/<int:id>/<slug:slug>/', views.transfer_detail, name='transfer_detail')
 ]
 if settings.DEBUG:  # new
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
