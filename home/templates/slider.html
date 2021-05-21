@@ -31,5 +31,11 @@
 
 
 		  	</ul>
+				<form action="/search/" method="post">
+							{% csrf_token %}
+							<input name="query" class="input search-input" type="text" placeholder="Enter your keyword">
+							<button class="search-btn"><i class="fa fa-search"></i> Search</button>
+				</form>
 	  	</div>
+
 	</aside>
