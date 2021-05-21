@@ -6,7 +6,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from home.models import Setting, ContactFormu, ContactFormMessage
-from transfer.models import Transfer, Category, Images
+from transfer.models import Transfer, Category, Images, Comment
 
 
 def index(request):
@@ -74,9 +74,11 @@ def category_transfers(request,id,slug):
 def transfer_detail(request, id, slug):
     category = Category.objects.all()
     transfer = Transfer.objects.get(pk=id)
+    comments = Comment.objects.filter(transfer_id=id, status='True')
     images = Images.objects.filter(transfer_id=id)
     context = {'category': category,
                'transfer': transfer,
-               'images':images
+               'images':images,
+               'comments': comments
                }
     return render(request, 'transfer_detail.html',context)
