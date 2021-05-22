@@ -39,7 +39,7 @@
 
                                     {% for rs in transfer %}
                                     <tr>
-                                        <td><a href="/transfer/{{ rs.id }}/{{ rs.slug }}"><img alt="{{ rs.title }}" src="{{ rs.image.url }}"></a></td>
+                                        <td><a href="/transfer/{{ rs.id }}/{{ rs.slug }}"><img alt="{{ rs.title }}" src="{{ rs.image.url }}" style="height: 200px"></a></td>
                                         <td><a href="/transfer/{{ rs.id }}/{{ rs.slug }}">{{ rs.title }}</a></td>
                                         <td></td>
                                         <td><a href="/category/{{ rs.category.id }}/{{ rs.category.slug }}">{{ rs.category.title }}</a></td>
@@ -60,6 +60,6 @@
 
 
 
-
+</div>
 
 {% endblock %}

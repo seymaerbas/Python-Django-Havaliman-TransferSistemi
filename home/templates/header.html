@@ -1,8 +1,61 @@
 {% load static %}
+
+
 	<div id="fh5co-wrapper">
 	<div id="fh5co-page">
 	<div id="fh5co-header">
+	<script>
 
+    $(function () {
+        $("#query").autocomplete({
+            source: "/search_auto/",
+            select: function (event, ui) { //item selected
+                AutoCompleteSelectHandler(event, ui)
+            },
+            minLength: 2,
+        });
+    });
+
+    function AutoCompleteSelectHandler(event, ui) {
+        var selectedObj = ui.item;
+    }
+
+		</script>
+  <button type="button" data-toggle="collapse" data-target="#search" class="btn btn-outline-secondary navbar-toggler"><span class="sr-only">Toggle search</span>
+	  			<i class="fa fa-search">
+					<img src="\uploads\images\search.jpg" style="height:20px">
+				</i>
+  </button>
+                <div id="search" class="collapse">
+                    <div class="container">
+                        <form role="search" class="ml-auto" action="/search/" method="post">
+                            {% csrf_token %}
+                            <div class="input-group">
+                                <div class="input-group-append">
+                                    <select class="form-control" name="catid">
+                                        <option value="0">All Categories</option>
+                                        {% load mptt_tags %}
+                                        {% recursetree category %}
+                                            {% if  node.is_leaf_node %}
+                                                <option value="{{ node.id }}">{{ node.title }}</option>
+                                            {% endif %}
+                                            {% if not node.is_leaf_node %}
+                                                <optgroup label="{{ node.title }}">
+                                                    {{ children }}
+                                                </optgroup>
+                                            {% endif %}
+                                        {% endrecursetree %}
+                                    </select>
+                                </div>
+                                <input id="query" type="text" name="query" placeholder="Search" class="form-control">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search">Ara</i></button>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
 	<header id="fh5co-header-section">
 
 			<div class="container">
@@ -10,7 +63,7 @@
 				<div class="nav-header">
 
 					<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
-					<h1 id="fh5co-logo"><a href="/home">Transfer</a></h1>
+					<h1 id="fh5co-logo"><a style="color: grey" href="/home">Transfer</a></h1>
 
 
 
@@ -19,16 +72,16 @@
 						<ul class="sf-menu" id="fh5co-primary-menu">
 							<li>
 						</li>
-							<li><a class="active" href="/home">Home</a></li>
+							<li><a style="color: grey" class="active" href="/home">Home</a></li>
 
 							<li>
 
 								{% load mptt_tags %}
-								<a class="fh5co-sub-ddown" href="/category/{{rs.id}}/{{rs.slug}}">ARAÇLAR</a>
+								<a style="color: grey" class="fh5co-sub-ddown" href="/category/{{rs.id}}/{{rs.slug}}">ARAÇLAR</a>
 							<ul>
 								{% recursetree category %}
 									<li>
-										<a href="/category/{{node.id}}/{{node.slug}}" class="fh5co-sub-ddown" style="color: red" >{{ node.title }}</a>
+										<a href="/category/{{node.id}}/{{node.slug}}" class="fh5co-sub-ddown" style="color: orange" >{{ node.title }}</a>
 
 										{% if not node.is_leaf_node %}
 											<ul class="children" >
@@ -49,10 +102,11 @@
 
 
 
-							<li><a href="services.html">Services</a></li>
-							<li><a href="/referanslarımız">Referanslar</a></li>
-							<li><a href="/hakkımızda">Hakkımızda</a></li>
-							<li><a href="iletisim">İletişim</a></li>
+							<li><a style="color: grey" href="services.html">Services</a></li>
+							<li><a style="color: grey" href="/referanslarımız">Referanslar</a></li>
+							<li><a style="color: grey" href="/hakkımızda">Hakkımızda</a></li>
+							<li><a style="color: grey" href="iletisim">İletişim</a></li>
+
 						</ul>
 					</nav>
 				</div>

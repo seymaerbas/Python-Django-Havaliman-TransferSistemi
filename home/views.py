@@ -1,3 +1,4 @@
+import json
 from unicodedata import category
 
 
@@ -85,6 +86,8 @@ def transfer_detail(request, id, slug):
                }
     return render(request, 'transfer_detail.html',context)
 
+
+
 def transfer_search(request):
 
     if request.method == 'POST':
@@ -92,9 +95,30 @@ def transfer_search(request):
         if form.is_valid():
             category = Category.objects.all()
             query = form.cleaned_data['query']
-            transfer = Transfer.objects.filter(title__icontains=query)
+            catid = form.cleaned_data['catid']
+            if catid == 0:
+                transfer = Transfer.objects.filter(title__icontains=query)
+            else:
+
+                transfer = Transfer.objects.filter(title__icontains=query, category_id=catid)
+
             context = {'transfer': transfer,
                        'category': category,
                        }
             return render(request, 'transfer_search.html', context)
     return HttpResponseRedirect('/')
+
+def transfer_search_auto(request):
+  if request.is_ajax():
+    q = request.GET.get('term', '')
+    transfer = Transfer.objects.filter(title__icontains=q)
+    results = []
+    for rs in transfer:
+      transfer_json = {}
+      transfer_json = rs.title
+      results.append(transfer_json)
+    data = json.dumps(results)
+  else:
+    data = 'fail'
+  mimetype = 'application/json'
+  return HttpResponse(data, mimetype)
