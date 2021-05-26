@@ -1,0 +1,96 @@
+{% extends "homebase.html" %}
+
+{% block title %}Singup-{{ setting.company }}{% endblock %}
+
+{% block keywords %}{{ setting.keywords }} {% endblock %}
+
+{% block description%}{{ setting.description }} {% endblock %}
+{% block head %}
+    <link rel='shortcut icon' type='image/x-icon' href={{setting.icon.url}} /> {% endblock %}
+
+
+{% block content %}
+   <!-- end:fh5co-header -->
+
+	<div class="fh5co-parallax" style="background-image: url(images/slider1.jpg);" data-stellar-background-ratio="0.5">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-center fh5co-table">
+					<div class="fh5co-intro fh5co-table-cell">
+						<h1 class="text-center">Sing Up</h1>
+						</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+		<div id="breadcrumb">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="/home">Anasayfa </a> </li>
+              <li class="active">Sing Up </li>
+        </ul>
+
+    </div>
+
+			 <!-- section -->
+    <div class="section">
+
+        <div id="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="box">
+                        <h2 class="text-uppercase">Sing Up Formu</h2>
+
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }}" role="alert">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                        <hr>
+                        <form method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                    <p>
+                        {{ field.label_tag }}<br>
+                    <div class="form-group">
+                        {{ field }}
+                    </div>
+                    {% if field.help_text %}
+                        <small style="color: gray">{{ field.help_text }}</small>
+                    {% endif %}
+                    {% for error in field.errors %}
+                        <p style="color: red">{{ error }}</p>
+                    {% endfor %}
+                    </p>
+                {% endfor %}
+                <p class="text-center">
+                    <button class="btn btn-primary" type="submit" value="Login"><i class="fa fa-user-plus"></i> Sing up
+                    </button>
+                </p>
+            </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+                </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /section -->
+		</div>
+{% endblock %}
