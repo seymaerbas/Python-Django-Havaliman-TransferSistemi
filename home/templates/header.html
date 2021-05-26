@@ -56,7 +56,7 @@
                         </form>
                     </div>
                 </div>
-	<header id="fh5co-header-section">
+	<li id="fh5co-header-section">
 
 			<div class="container">
 
@@ -72,16 +72,16 @@
 						<ul class="sf-menu" id="fh5co-primary-menu">
 							<li>
 						</li>
-							<li><a style="color: grey" class="active" href="/home">Home</a></li>
+							<li><a style="color: black" class="active" href="/home">Home</a></li>
 
 							<li>
 
 								{% load mptt_tags %}
-								<a style="color: grey" class="fh5co-sub-ddown" href="/category/{{rs.id}}/{{rs.slug}}">ARAÇLAR</a>
+								<a style="color: black" class="fh5co-sub-ddown" href="/category/{{rs.id}}/{{rs.slug}}">ARAÇLAR</a>
 							<ul>
 								{% recursetree category %}
 									<li>
-										<a href="/category/{{node.id}}/{{node.slug}}" class="fh5co-sub-ddown" style="color: orange" >{{ node.title }}</a>
+										<a href="/category/{{node.id}}/{{node.slug}}" class="fh5co-sub-ddown" style="color: black" >{{ node.title }}</a>
 
 										{% if not node.is_leaf_node %}
 											<ul class="children" >
@@ -101,16 +101,61 @@
 							</li>
 
 
+							<li><a style="color: black" href="/referanslarımız">Referanslar</a></li>
+							<li><a style="color: black" href="/hakkımızda">Hakkımızda</a></li>
+							<li><a style="color: black" href="iletisim">İletişim</a></li>
+							<li>
+{% if user.id is not None %}
+                            <a  style="color: black" href="">{{ user.first_name }} <span class="" aria-hidden="true"></span></a>
+                            <ul>
+                                <li>
+                                    <a class="dropdown-item" href=""> <img class="img-profile rounded-circle" src="{{ user.userprofile.image.url }}" style="max-width: 60px">
+                                        <br>
+                                    </a>
+                                </li>
 
-							<li><a style="color: grey" href="services.html">Services</a></li>
-							<li><a style="color: grey" href="/referanslarımız">Referanslar</a></li>
-							<li><a style="color: grey" href="/hakkımızda">Hakkımızda</a></li>
-							<li><a style="color: grey" href="iletisim">İletişim</a></li>
+								<li>
 
-						</ul>
-					</nav>
+                                    <a style="color: black" href="/contact" class="dropdown-item" >
+                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400">My message</i>
+
+                                    </a>
+
+                                </li>
+                                <li>
+                                    <a style="color: black" href="" class="dropdown-item" >
+                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"> My rezervation</i>
+
+                                    </a>
+
+                                </li>
+
+                                <li>
+
+                                        <a style="color: black" href="/logout/" class="dropdown-item" >
+                                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400">Logout</i>
+
+                                        </a>
+
+                                </li>
+
+                            </ul>
+                        </li>
+  {% else %}
+                            <li><a style="color: black" href="/login/">Login</a></li>
+                            <li><a  style="color: black" href="/join/">Join</a></li>
+
+{% endif %}
+
+
+            <!-- //nav -->
+
+
 				</div>
+	</li>
+</nav>
 
-			</div>
+
 		</header>
+
 		</div>

@@ -33,6 +33,9 @@ urlpatterns = [
     path('transfer/<int:id>/<slug:slug>/', views.transfer_detail, name='transfer_detail'),
     path('search/', views.transfer_search, name='transfer_search'),
     path('search_auto/', views.transfer_search_auto, name='transfer_search_auto'),
+    path('logout/', views.logout_view, name='logout_view'),
+    path('login/', views.login_view, name='login_view'),
+
 ]
 if settings.DEBUG:  # new
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
