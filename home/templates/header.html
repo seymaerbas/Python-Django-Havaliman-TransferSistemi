@@ -103,9 +103,9 @@
 
 							<li><a style="color: black" href="/referanslarımız">Referanslar</a></li>
 							<li><a style="color: black" href="/hakkımızda">Hakkımızda</a></li>
-							<li><a style="color: black" href="iletisim">İletişim</a></li>
+							<li><a style="color: black" href="/iletisim">İletişim</a></li>
 							<li>
-{% if user.id is not None %}
+                            {% if user.id is not None %}
                             <a  style="color: black" href="">{{ user.first_name }} <span class="" aria-hidden="true"></span></a>
                             <ul>
                                 <li>
@@ -113,7 +113,14 @@
                                         <br>
                                     </a>
                                 </li>
+                                <li>
 
+                                    <a style="color: black" href="/user/" class="dropdown-item" >
+                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400">My account</i>
+
+                                    </a>
+
+                                </li>
 								<li>
 
                                     <a style="color: black" href="/contact" class="dropdown-item" >

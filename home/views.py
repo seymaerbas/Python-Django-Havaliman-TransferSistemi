@@ -153,12 +153,20 @@ def signup_view(request):
             password = request.POST['password1']
             user = authenticate(request, username=username, password=password)
             login(request, user)
+            current_user = request.user
+            data = UserProfile()
+            data.user_id = current_user.id
+            data.image = "images/users/user.png"
+            data.save()
+            messages.success(request, "Hoş geldiniz " + current_user.first_name)
             return HttpResponseRedirect('/')
-    form = SignUpForm
-    category = Category.objects.all()
 
+    form = SignUpForm()
+    category = Category.objects.all()
+    setting = Setting.objects.get(pk=1)
     context = {'category': category,
-                   'form': form,
-                   }
+               'form': form,
+               'setting': setting,
+               }
 
     return render(request, 'signup.html', context)
