@@ -9,26 +9,31 @@
 {% endblock %}
 
 
-{% block topbar %}
-    {% include "topbar.html" %}
-{% endblock %}
+
 
 {% block content %}
+	<div class="fh5co-parallax" style="background-image: url(images/slider1.jpg);" data-stellar-background-ratio="0.5">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-center fh5co-table">
+					<div class="fh5co-intro fh5co-table-cell">
+						<h1 class="text-center">User Update</h1>
+						</div>
 
-    <div id="heading-breadcrumbs">
-        <div class="container">
-            <div class="row d-flex align-items-center flex-wrap">
-                <div class="col-md-7">
-                    <h1 class="h2">User Profile</h1>
-                </div>
-                <div class="col-md-5">
-                    <ul class="breadcrumb d-flex justify-content-end">
-                        <li class="breadcrumb-item"><a href="/">Home</a></li>
-                        <li class="breadcrumb-item active">User Information</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+		<div id="breadcrumb">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="/home">Anasayfa </a> </li>
+              <li class="active">User Profile </li>
+        </ul>
+
     </div>
     <div id="content">
         <div class="container">
@@ -64,15 +69,14 @@
                             <h3 class="h4 panel-title">Customer section</h3>
                         </div>
                         <div class="panel-body">
-                            <ul class="nav nav-pills flex-column text-sm">
+                            <ul class="">
                                 <li class="nav-item"><a href="customer-orders.html" class="nav-link active"><i
                                         class="fa fa-list"></i> My orders</a></li>
-                                <li class="nav-item"><a href="customer-wishlist.html" class="nav-link"><i
-                                        class="fa fa-heart"></i> My wishlist</a></li>
-                                <li class="nav-item"><a href="/user/comments" class="nav-link"><i
+                                <li class="nav-item"><a href="/user/comments " class="nav-link"><i
                                         class="fa fa-comment"></i> My comments</a></li>
-                                <li class="nav-item"><a href="/user" class="nav-link"><i class="fa fa-user"></i> My
+                                <li class="nav-item"><a href="/user " class="nav-link"><i class="fa fa-user"></i> My
                                     account</a></li>
+
                                 <li class="nav-item"><a href="/logout/" class="nav-link"><i class="fa fa-sign-out"></i>
                                     Logout</a></li>
                             </ul>
