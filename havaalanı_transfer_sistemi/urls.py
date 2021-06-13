@@ -28,6 +28,7 @@ urlpatterns = [
     path('home/', include('home.urls')),
     path('transfer/', include('transfer.urls')),
     path('admin/', admin.site.urls),
+    path('reservation/', include('reservation.urls')),
     path('user/', include('user.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('category/<int:id>/<slug:slug>/', views.category_transfers, name='category_transfers'),

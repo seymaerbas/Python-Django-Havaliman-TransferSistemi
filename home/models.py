@@ -109,3 +109,20 @@ class FAQ(models.Model):
     def __str__(self):
         return self.question
 
+
+class Location(models.Model):
+
+   STATUS = (
+       ('True', 'Evet'),
+       ('False', 'Hayır')
+   )
+   type = models.CharField(blank=True, max_length=20)
+   name = models.CharField(blank=True, max_length=20)
+   enlem = models.IntegerField(blank=True)
+   boylam = models.IntegerField(blank=True)
+   status = models.CharField(max_length=10, choices=STATUS)
+   create_at = models.DateTimeField(auto_now_add=True)
+   update_at = models.DateTimeField(auto_now=True)
+
+   def __str__(self):
+       return self.type
