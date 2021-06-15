@@ -207,7 +207,51 @@
 
                             <td><br>{{transfer.base_price}} ₺</td>
 
-                            <td><button type="submit" class="btn button-style-3 mt-sm-2 mt-1">Rezervasyon</button></td>
+<form class="row" action="/reservation/sendreserve/{{ transfer.id }}" name="reserveform" method="post">
+                              {% csrf_token %}
+                               <div class="form-group">
+
+                                     <input class="input" type="date" name="airline" id="airline"/>
+
+                                           </div>
+
+                                           <div class="form-group">
+                                               <input class="input" type="time" name="flightnumber" id="flightnumber"/>
+
+                                           </div>
+
+                            <div class="form-group">
+
+                                <input class="input" type="date" name="flightarrivedate" id="flightarrivedate"/>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <input class="input" type="time" name="flightarrivetime" id="flightarrivetime"/>
+
+                            </div>
+
+<div class="form-group">
+
+                                <input class="input" type="time" name="pickuptime" id="pickuptime"/>
+
+                            </div>
+<div class="form-group">
+
+                                <input class="input" type="time" name="note" id="note"/>
+
+                            </div>
+
+
+                            {% if user.id is not None %}
+                            <button class="primary-btn">Send Reservation Request</button>
+                            {% else %}
+                            Rezervasyon yapabilmek icin <a href="/login ">Login</a> yapiniz..
+                            {% endif %}
+
+                        </form>
+                            <td><button type="submit" class="btn button-style-3 mt-sm-2 mt-1"><a href="/reservation"> Rezervasyon</a></button></td>
 
                             </tr>
 

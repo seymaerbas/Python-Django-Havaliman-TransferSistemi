@@ -10,6 +10,7 @@ from django.shortcuts import render
 # Create your views here.
 from home.forms import SearchForm, SignUpForm
 from home.models import Setting, ContactFormu, ContactFormMessage, UserProfile, FAQ
+from reservation.models import Reservation
 from transfer.models import Transfer, Category, Images, Comment
 
 
@@ -178,3 +179,4 @@ def faq(request):
     setting = Setting.objects.get(pk=1)
     context = {'faq': faq, 'category': category, 'setting': setting}
     return render(request, 'faq.html', context)
+
