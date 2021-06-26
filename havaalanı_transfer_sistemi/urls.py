@@ -22,15 +22,16 @@ from home import views
 
 urlpatterns = [
     path('', include('home.urls')),
-    path('hakkımızda', views.hakkımızda, name='hakkımızda'),
-    path('referanslarımız', views.referanslarımız, name='referanslarımız'),
-    path('iletisim', views.iletisim, name='iletisim'),
     path('home/', include('home.urls')),
     path('transfer/', include('transfer.urls')),
     path('admin/', admin.site.urls),
     path('reservation/', include('reservation.urls')),
     path('user/', include('user.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
+
+    path('hakkımızda', views.hakkımızda, name='hakkımızda'),
+    path('referanslarımız', views.referanslarımız, name='referanslarımız'),
+    path('iletisim', views.iletisim, name='iletisim'),
     path('category/<int:id>/<slug:slug>/', views.category_transfers, name='category_transfers'),
     path('transfer/<int:id>/<slug:slug>/', views.transfer_detail, name='transfer_detail'),
     path('search/', views.transfer_search, name='transfer_search'),
@@ -39,6 +40,7 @@ urlpatterns = [
     path('login/', views.login_view, name='login_view'),
     path('signup/', views.signup_view, name='signup_view'),
     path('sss/', views.faq, name='faq'),
+
 ]
 if settings.DEBUG:  # new
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

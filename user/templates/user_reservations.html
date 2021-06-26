@@ -1,0 +1,110 @@
+{% extends "homebase.html" %}
+
+{% load static %}
+
+{% block title %} {{ profile.user_name }} {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+{% block description %} {{ setting.description}} {% endblock %}
+
+{% block head %}
+
+    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}' />
+
+ {% endblock %}
+
+
+
+{% block content %}
+
+     <div class="fh5co-parallax" style="background-image: url(images/slider1.jpg);" data-stellar-background-ratio="0.5">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-center fh5co-table">
+					<div class="fh5co-intro fh5co-table-cell">
+						<h1 class="text-center">User Reservations</h1>
+						</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+		<div id="breadcrumb">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="/home">Anasayfa </a> </li>
+              <li class="active">User Reservations </li>
+        </ul>
+
+
+
+                        <div class="col-lg-8 col-md-13 order-2 order-lg-1">
+                            <div class="contact-form-content pt-sm-55 pt-xs-55">
+                                <h3 class="contact-page-title">Rezervasyonlarınız</h3>
+                                <table class="shopping-cart-table table">
+
+
+                                    {% if messages %}
+                                                {% for message in messages %}
+                                                    <div class = "alert alert-{{ message.tags }}" role="alert">
+                                                        {{ message|safe }}
+                                                    </div>
+                                                {% endfor %}
+                                            {% endif %}
+
+                                <tr>
+
+
+                                    <th class="text-left"> Transfer</th>
+                                    <th class="text-left"> Çıkış yeri</th>
+                                    <th class="text-left"> Varış yeri</th>
+                                    <th class="text-left"> Transfer Saati</th>
+                                    <th class="text-left"> Ücret</th>
+
+                                    <th class="text-left"> Not</th>
+                                    <th class="text-left"> Durum</th>
+
+                                    <th class="text-left"> Sil</th>
+
+                                </tr>
+
+                                {% for rs in reservations %}
+                                    <tr>
+
+
+
+                                    <td class="text-left">
+                                        <a href="/transfer/{{ rs.transfer_id }}/{{ rs.transfer.slug }}">{{ rs.transfer.title }} </a>
+                                        </td>
+
+                                    <td class="text-left"> {{ rs.from_location }}</td>
+                                        <td class="text-left"> {{ rs.to_location }}</td>
+                                    <td class="text-left"> {{ rs.pickuptime }}</td>
+                                    <td class="text-left"> ₺{{ rs.price }}</td>
+
+
+                                    <td class="text-left"> {{ rs.note }}</td>
+                                    <td class="text-left"> {{ rs.status }}</td>
+                                    {% if rs.status == 'Beklemede' %}
+                                    <td class="text-left"><a class="primary-btn" href="/user/deletereservations/{{ rs.id }}" onclick="return confirm('Rezervasyon talebiniz silinecek. Emin misiniz?')"> Sil </a> </td>
+                                    {% endif %}
+
+                                    </tr>
+                                {% endfor %}
+
+
+
+
+
+                                </table>
+
+
+
+                            </div>
+                    </div>
+                </div>
+            </div>
+
+{% endblock %}

@@ -126,4 +126,4 @@ class Location(models.Model):
 
    def __str__(self):
 
-       return self.type
+       return self.name

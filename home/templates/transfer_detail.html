@@ -113,7 +113,7 @@
 
 
     <!-- page details -->
-  <div class="fh5co-parallax" style="background-image: url(images/slider1.jpg);" data-stellar-background-ratio="0.5">
+  <div class="fh5co-parallax" style="background-image: url();" data-stellar-background-ratio="0.5">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-10 col-md-offset-0 col-sm-10 col-sm-offset-0 col-xs-10 col-xs-offset-0 text-center fh5co-table">
@@ -190,9 +190,9 @@
                         <thead class="thead-light">
                         <tr>
                             <th>Title</th>
+                            <th>Ana Fiyat</th>
                             <th>Kapasite</th>
-                            <th>Fiyat</th>
-                            <th>Rezervasyon Yap</th>
+
 
                         </tr>
                         </thead>
@@ -202,59 +202,112 @@
 
                         <tr>
                              <td><br>{{transfer.title}} </td>
-
-                            <td><br>{{transfer.capasity}} </td>
-
                             <td><br>{{transfer.base_price}} ₺</td>
-
-<form class="row" action="/reservation/sendreserve/{{ transfer.id }}" name="reserveform" method="post">
-                              {% csrf_token %}
-                               <div class="form-group">
-
-                                     <input class="input" type="date" name="airline" id="airline"/>
-
+                            <td><br>  <div class="quantity d-flex align-items-center">
+                                    <input name="quantity" class="input" style="width: 80px; padding: 8px" type="number" min="0" max="{{ transfer.capasity }}" value="1" >
+                            </div>
+                            </td>
+                        </tr>
+                        <tr>
+                             <th>Rezervasyon Yap</th>
+                        </tr>
+                            <td>
+                                 <div class="col-lg-10">
+                                     <br>
+                                     </p>
+                                        {% if messages %}
+                                                {% for message in messages %}
+                                                    <div class = "alert alert-{{ message.tags }}" role="alert">
+                                                        {{ message }}
+                                                    </div>
+                                                {% endfor %}
+                                            {% endif %}
+                         <form class="row" action="/reservation/sendreserve/{{ transfer.id }}" name="reserveform" method="post">
+                             {% csrf_token %}
+                             <div class="form-group">
+                                        <select class="form-control" name="airline">
+                                        <option value="0">Havaalanı </option>
+                                        <option value="1">Sabiha Gökçen </option>
+                                    </select>
                                            </div>
 
-                                           <div class="form-group">
-                                               <input class="input" type="time" name="flightnumber" id="flightnumber"/>
 
-                                           </div>
+                                    <div class="col-lg-10 form-group date-plu">
+                                        <label>Uçuş numarası</label>
+                                        <input type="number" name="flightnumber" id="flightnumber">
+                                    </div>
 
-                            <div class="form-group">
 
+                                <div class="col-lg-10 form-group date-plu">
+                                        <label>Varış Tarihi</label>
                                 <input class="input" type="date" name="flightarrivedate" id="flightarrivedate"/>
 
-                            </div>
+                                </div>
 
                             <div class="form-group">
-
+                                <label>Varış Saati</label>
                                 <input class="input" type="time" name="flightarrivetime" id="flightarrivetime"/>
 
                             </div>
 
-<div class="form-group">
-
+                            <div class="form-group">
+                                <label>Transfer Saati</label>
                                 <input class="input" type="time" name="pickuptime" id="pickuptime"/>
 
                             </div>
-<div class="form-group">
 
-                                <input class="input" type="time" name="note" id="note"/>
+                             <div class="form-group">
 
-                            </div>
+                                 <div class="input-group-append">
+                                    <select class="form-control" name="from_location">
+                                        <option value="0">Çıkış Yeri</option>
+                                        {% for rs in location %}
+                                        <option >{{rs.name}}</option>
+                                        {% endfor %}
 
 
-                            {% if user.id is not None %}
-                            <button class="primary-btn">Send Reservation Request</button>
-                            {% else %}
-                            Rezervasyon yapabilmek icin <a href="/login ">Login</a> yapiniz..
-                            {% endif %}
+                                    </select>
+                                </div>
+                             </div>
+                              <div class="form-group">
+
+                                 <div class="input-group-append">
+                                    <select class="form-control" name="from_location">
+                                        <option value="0">Varış Yeri</option>
+                                        {% for rs in location %}
+                                        <option >{{rs.name}}</option>
+                                        {% endfor %}
+
+
+                                    </select>
+                                </div>
+                             </div>
+
+                                                                        <br>
+
+
+                             &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+                             {% if user.id is not None %}
+                             <button class="primary-btn">Rezervasyon İsteği Gönder</button>
+                             {% else %}
+                             Rezervasyon yapabilmek icin <a href="/login ">Giriş</a> yapiniz..
+                             {% endif %}
+
+
+
+
+
+
+                         </form>
+                              </div>
+                                                                </div>
+                                                                <!-- Feedback Area End Here -->
+                                                            </div>
+                                                        </div>
+                            </td>
+
 
                         </form>
-                            <td><button type="submit" class="btn button-style-3 mt-sm-2 mt-1"><a href="/reservation"> Rezervasyon</a></button></td>
-
-                            </tr>
-
                         </tbody>
 
                     </table>

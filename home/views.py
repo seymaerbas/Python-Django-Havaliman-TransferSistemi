@@ -9,7 +9,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from home.forms import SearchForm, SignUpForm
-from home.models import Setting, ContactFormu, ContactFormMessage, UserProfile, FAQ
+from home.models import Setting, ContactFormu, ContactFormMessage, UserProfile, FAQ, Location
 from reservation.models import Reservation
 from transfer.models import Transfer, Category, Images, Comment
 
@@ -81,10 +81,13 @@ def transfer_detail(request, id, slug):
     transfer = Transfer.objects.get(pk=id)
     comments = Comment.objects.filter(transfer_id=id, status='True')
     images = Images.objects.filter(transfer_id=id)
+    location = Location.objects.all()
+
     context = {'category': category,
                'transfer': transfer,
                'images':images,
-               'comments': comments
+               'comments': comments,
+               'location':location
                }
     return render(request, 'transfer_detail.html',context)
 
