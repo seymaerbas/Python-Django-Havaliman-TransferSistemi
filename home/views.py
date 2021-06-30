@@ -82,11 +82,13 @@ def transfer_detail(request, id, slug):
     comments = Comment.objects.filter(transfer_id=id, status='True')
     images = Images.objects.filter(transfer_id=id)
     location = Location.objects.all()
+    reservation=Reservation.objects.all()
 
     context = {'category': category,
                'transfer': transfer,
                'images':images,
                'comments': comments,
+               'reservation': reservation,
                'location':location
                }
     return render(request, 'transfer_detail.html',context)

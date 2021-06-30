@@ -208,41 +208,44 @@
                             </div>
                             </td>
                         </tr>
+
                         <tr>
                              <th>Rezervasyon Yap</th>
                         </tr>
                             <td>
                                  <div class="col-lg-10">
-                                     <br>
-                                     </p>
-                                        {% if messages %}
+                                     {% if messages %}
                                                 {% for message in messages %}
                                                     <div class = "alert alert-{{ message.tags }}" role="alert">
                                                         {{ message }}
                                                     </div>
                                                 {% endfor %}
-                                            {% endif %}
-                         <form class="row" action="/reservation/sendreserve/{{ transfer.id }}" name="reserveform" method="post">
+                                     {% endif %}
+                                     <br>
+                                     </p>
+                            <form action="{% url 'sendreserve' transfer.id %}" method="POST">
+                       <!-- <form action="/reservation/sendreserve/{{ transfer.id }}" name="reservationform" method="post"> -->
                              {% csrf_token %}
+
+
+
                              <div class="form-group">
-                                        <select class="form-control" name="airline">
+                                        <select class="form-control" name="airline" id="airline">
                                         <option value="0">Havaalanı </option>
                                         <option value="1">Sabiha Gökçen </option>
                                     </select>
-                                           </div>
+                             </div>
 
-
-                                    <div class="col-lg-10 form-group date-plu">
+                             <div class="col-lg-10 form-group date-plu">
                                         <label>Uçuş numarası</label>
                                         <input type="number" name="flightnumber" id="flightnumber">
-                                    </div>
+                             </div>
 
-
-                                <div class="col-lg-10 form-group date-plu">
+                             <div class="col-lg-10 form-group date-plu">
                                         <label>Varış Tarihi</label>
                                 <input class="input" type="date" name="flightarrivedate" id="flightarrivedate"/>
 
-                                </div>
+                             </div>
 
                             <div class="form-group">
                                 <label>Varış Saati</label>
@@ -259,10 +262,10 @@
                              <div class="form-group">
 
                                  <div class="input-group-append">
-                                    <select class="form-control" name="from_location">
+                                    <select class="form-control" name="from_location" id="from_location">
                                         <option value="0">Çıkış Yeri</option>
                                         {% for rs in location %}
-                                        <option >{{rs.name}}</option>
+                                        <option value="{{ rs.id }}">{{rs.name}}</option>
                                         {% endfor %}
 
 
@@ -272,10 +275,10 @@
                               <div class="form-group">
 
                                  <div class="input-group-append">
-                                    <select class="form-control" name="from_location">
+                                    <select class="form-control" name="to_location" id="to_location">
                                         <option value="0">Varış Yeri</option>
                                         {% for rs in location %}
-                                        <option >{{rs.name}}</option>
+                                        <option value="{{ rs.id }}" >{{rs.name}}</option>
                                         {% endfor %}
 
 
@@ -283,31 +286,28 @@
                                 </div>
                              </div>
 
+
                                                                         <br>
 
 
-                             &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
                              {% if user.id is not None %}
-                             <button class="primary-btn">Rezervasyon İsteği Gönder</button>
+                             <button type="submit" class="primary-btn">Rezervasyon İsteği Gönder</button>
                              {% else %}
                              Rezervasyon yapabilmek icin <a href="/login ">Giriş</a> yapiniz..
                              {% endif %}
 
 
 
-
-
-
-                         </form>
+                        </form>
                               </div>
-                                                                </div>
+                </div>
                                                                 <!-- Feedback Area End Here -->
-                                                            </div>
-                                                        </div>
+            </div>
+        </div>
                             </td>
 
 
-                        </form>
+
                         </tbody>
 
                     </table>
