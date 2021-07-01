@@ -171,11 +171,28 @@
                     x[slideIndex-1].style.display = "block";
                 }
             </script>
+              <script language="JavaScript">
+
+                                        sayi=0
+
+                                    </script>
+
+                    {% for rs in comments %}
+                     <script language="JavaScript">
+
+                                        sayi++
+
+                                    </script>
+                    {% endfor %}
             <br><br>
             <div class="tab">
                 <button class="tablinks" onclick="openCity(event, 'London')">Detaylar</button>
-                <button class="tablinks" onclick="openCity(event, 'Paris')">İncele</button>
-                <button class="tablinks" onclick="openCity(event, 'Tokyo')">Yorumlar</button>
+                <button class="tablinks" onclick="openCity(event, 'Paris')">Rezervasyon</button>
+                <button class="tablinks" onclick="openCity(event, 'Tokyo')">Yorumlar( <script language="JavaScript">
+
+                                        document.write(sayi)
+
+                                    </script> )  </button>
             </div>
 
             <div id="London" class="tabcontent">
@@ -232,7 +249,7 @@
                              <div class="form-group">
                                         <select class="form-control" name="airline" id="airline">
                                         <option value="0">Havaalanı </option>
-                                        <option value="1">Sabiha Gökçen </option>
+                                        <option value="1">Esenboğa </option>
                                     </select>
                              </div>
 
